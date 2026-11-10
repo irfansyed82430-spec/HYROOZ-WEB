@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyrooz Clothing — Your Style. Your Design. Your Rules.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #fe6a34;
+    --orange-dark: #ab3500;
+    --black: #000;
+    --ink: #111;
+    --grey-text: #444748;
+    --grey-muted: #858383;
+    --light: #f3f3f3;
+    --white: #fff;
+    --bebas: 'Bebas Neue', Impact, sans-serif;
+    --inter: 'Inter', Arial, sans-serif;
+    --manrope: 'Manrope', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--inter); color: var(--ink); background: var(--white); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+  .eyebrow { font-family: var(--manrope); font-weight: 800; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: var(--orange-dark); }
+  .h2 { font-family: var(--bebas); font-weight: 400; font-size: 52px; line-height: 1; letter-spacing: 1px; text-transform: uppercase; }
+  .lead { font-size: 14px; color: var(--grey-text); line-height: 1.6; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--orange); color: var(--white); font-family: var(--manrope); font-weight: 700; font-size: 15px; letter-spacing: -0.1px; text-transform: uppercase; transition: filter .2s; }
+  .btn:hover { filter: brightness(.92); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: var(--white); filter: none; }
+  .tag { display: inline-block; padding: 4px 12px; background: var(--orange); color: var(--white); font-family: var(--inter); font-weight: 600; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; }
+  .tag-light { background: #eee; color: var(--ink); }
+
+  /* ===== Top meta bar ===== */
+  .meta-bar { background: var(--black); color: var(--grey-muted); font-size: 11px; letter-spacing: .5px; text-transform: uppercase; }
+  .meta-bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 8px; padding-bottom: 8px; flex-wrap: wrap; }
+  .meta-bar .ticker { display: flex; gap: 20px; flex-wrap: wrap; }
+  .meta-bar .ticker span { color: var(--white); font-weight: 600; }
+  .meta-bar .ticker span::before { content: '•'; color: var(--orange); margin-right: 8px; }
+  .meta-bar .meta-right { display: flex; gap: 16px; }
+
+  /* ===== Header ===== */
+  header.site { background: var(--white); border-bottom: 1px solid #e6e6e6; position: sticky; top: 0; z-index: 50; }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 24px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: var(--bebas); font-size: 28px; letter-spacing: 1px; }
+  .logo .mark { width: 32px; height: 32px; background: var(--black); display: grid; place-items: center; color: var(--orange); font-size: 18px; }
+  .logo small { display: block; font-family: var(--manrope); font-size: 10px; font-weight: 800; letter-spacing: 1.5px; color: var(--grey-muted); line-height: 1; }
+  nav.main-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  nav.main-nav a { padding: 12px; font-family: var(--manrope); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; color: var(--ink); }
+  nav.main-nav a:hover { color: var(--orange); }
+  nav.main-nav a.cta { background: var(--black); color: var(--white); }
+  .header-icons { display: flex; align-items: center; gap: 16px; font-size: 13px; font-family: var(--manrope); font-weight: 700; }
+  .search { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid #ddd; min-width: 160px; color: var(--grey-muted); font-size: 13px; }
+
+  /* ===== 1. Hero ===== */
+  .hero { background: var(--white); padding: 72px 0 40px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; }
+  .hero .meta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .hero h1 { font-family: var(--bebas); font-weight: 400; font-size: 118px; line-height: .88; letter-spacing: 1px; text-transform: uppercase; }
+  .hero h1 .accent { color: var(--orange); display: block; }
+  .hero p.lead { max-width: 576px; margin-top: 28px; }
+  .hero .ctas { display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap; }
+  .hero .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; padding-top: 24px; border-top: 1px solid #e6e6e6; }
+  .metric .num { font-family: var(--bebas); font-size: 40px; line-height: 1; }
+  .metric .lbl { font-size: 11px; font-weight: 600; letter-spacing: .5px; color: var(--grey-muted); text-transform: uppercase; margin-top: 4px; }
+  .hero-visual { position: relative; height: 620px; background: linear-gradient(160deg, #2b2b2b 0%, #0b0b0b 55%, #3a1b10 100%); overflow: hidden; }
+  .hero-visual .ph-label { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.35); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; text-align: center; padding: 20px; }
+  .hero-visual .gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.6), transparent 45%); }
+  .spec-pill { position: absolute; left: 16px; right: 16px; bottom: 16px; background: rgba(255,255,255,.95); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .spec-pill .k { font-size: 11px; font-weight: 600; letter-spacing: .5px; color: var(--grey-text); text-transform: uppercase; }
+  .spec-pill .v { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .hero-chip { position: absolute; top: 16px; right: 16px; background: var(--black); color: var(--white); padding: 6px 12px; font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+
+  /* ===== 2. Shop by category ===== */
+  .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+  .section-head .title-block { display: flex; flex-direction: column; gap: 12px; }
+  .section-head .side-copy { max-width: 448px; font-size: 14px; color: var(--grey-text); }
+  .cat-section { background: var(--white); padding: 72px 0; }
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .cat-card { background: var(--white); }
+  .cat-card .img { position: relative; aspect-ratio: 4 / 5; background: linear-gradient(135deg, #d9d9d9, #8a8a8a); overflow: hidden; }
+  .cat-card .img .tag { position: absolute; top: 12px; left: 12px; }
+  .cat-card .body { padding: 24px; background: var(--white); border: 1px solid #ececec; border-top: none; }
+  .cat-card .idx { font-size: 11px; font-weight: 700; color: var(--orange-dark); letter-spacing: 1px; text-transform: uppercase; }
+  .cat-card h3 { font-family: var(--bebas); font-weight: 400; font-size: 34px; letter-spacing: .5px; text-transform: uppercase; margin-top: 6px; }
+  .cat-card p { font-size: 13px; color: var(--grey-text); margin-top: 8px; min-height: 38px; }
+  .cat-card .link-row { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 16px; border-top: 1px solid #ececec; font-family: var(--manrope); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  .cat-card .link-row a:hover { color: var(--orange); }
+
+  /* ===== 3. Fan favourites ===== */
+  .fav-section { background: var(--light); padding: 72px 0; }
+  .filters { display: flex; gap: 4px; background: var(--white); border: 1px solid #e0e0e0; padding: 4px; flex-wrap: wrap; }
+  .filters button { padding: 8px 16px; font-family: var(--manrope); font-weight: 700; font-size: 11px; letter-spacing: .6px; text-transform: uppercase; color: var(--grey-text); }
+  .filters button.active { background: var(--black); color: var(--white); }
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .product { background: var(--white); display: flex; flex-direction: column; }
+  .product .img { position: relative; aspect-ratio: 4 / 5; background: linear-gradient(160deg, #e7e7e7, #bdbdbd); }
+  .product .img .tag { position: absolute; top: 12px; left: 12px; }
+  .product .wish { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; background: var(--white); display: grid; place-items: center; font-size: 14px; }
+  .product .body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .product .row { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--grey-muted); }
+  .product h3 { font-family: var(--bebas); font-weight: 400; font-size: 26px; letter-spacing: .5px; line-height: 1.05; text-transform: uppercase; }
+  .swatches { display: flex; gap: 8px; }
+  .swatches span { width: 16px; height: 16px; border-radius: 3px; border: 1px solid rgba(0,0,0,.12); }
+  .sizes { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sizes span { padding: 4px 8px; background: #f0f0f0; font-size: 11px; font-weight: 600; color: var(--grey-text); }
+  .product .add { margin: 0 24px 24px; background: var(--black); color: var(--white); padding: 14px; font-family: var(--manrope); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; text-align: center; }
+  .product .add:hover { background: var(--orange); }
+
+  /* ===== 4. How it works ===== */
+  .how-section { background: var(--white); padding: 72px 0; }
+  .how-head { text-align: center; max-width: 768px; margin: 0 auto 48px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .how-head .lead { max-width: 640px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid #ececec; }
+  .step { padding: 32px 24px; border-right: 1px solid #ececec; background: var(--white); display: flex; flex-direction: column; gap: 14px; }
+  .step:last-child { border-right: none; }
+  .step .top { display: flex; justify-content: space-between; align-items: center; }
+  .step .num { font-family: var(--bebas); font-size: 48px; line-height: 1; color: #d6d6d6; }
+  .step .ico { width: 32px; height: 32px; background: #eee; display: grid; place-items: center; font-size: 14px; }
+  .step .k { font-size: 11px; font-weight: 700; letter-spacing: .5px; color: var(--orange-dark); text-transform: uppercase; }
+  .step h3 { font-family: var(--manrope); font-weight: 800; font-size: 15px; text-transform: uppercase; }
+  .step p { font-size: 13px; color: var(--grey-text); line-height: 1.6; }
+  .studio-ribbon { margin-top: 32px; background: var(--black); color: var(--white); padding: 24px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .studio-ribbon .title { font-family: var(--manrope); font-weight: 700; font-size: 16px; text-transform: uppercase; display: flex; gap: 16px; align-items: center; }
+  .studio-ribbon .title .ico { color: var(--orange); font-size: 20px; }
+  .studio-ribbon .sub { font-size: 12px; color: var(--grey-muted); margin-top: 4px; }
+  .studio-ribbon .btn { padding: 12px 24px; font-size: 11px; font-weight: 800; letter-spacing: .9px; }
+
+  /* ===== 5. Why choose us ===== */
+  .why-section { background: var(--light); padding: 72px 0; }
+  .why-grid { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: 32px; align-items: center; }
+  .why-left { display: flex; flex-direction: column; gap: 4px; }
+  .why-left .h2 { margin: 6px 0 12px; font-size: 52px; }
+  .why-left .lead { padding: 12px 0 20px; }
+  .durability { background: var(--white); padding: 16px; box-shadow: 0 1px 1px rgba(0,0,0,.05); }
+  .durability .head { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--grey-text); }
+  .durability .head b { color: var(--orange-dark); }
+  .durability svg { width: 100%; height: 36px; margin: 8px 0; }
+  .durability .foot { font-size: 11px; font-weight: 600; color: var(--grey-text); letter-spacing: .4px; }
+  .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .feature { background: var(--white); padding: 24px; box-shadow: 0 1px 1px rgba(0,0,0,.05); min-height: 224px; position: relative; }
+  .feature .ico { width: 48px; height: 48px; background: #eee; display: grid; place-items: center; font-size: 18px; }
+  .feature .k { margin-top: 28px; font-size: 11px; font-weight: 700; letter-spacing: .5px; color: var(--orange-dark); text-transform: uppercase; }
+  .feature h3 { margin-top: 8px; font-family: var(--manrope); font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: -.1px; }
+  .feature p { margin-top: 10px; font-size: 12px; color: var(--grey-text); line-height: 1.6; }
+
+  /* ===== 6. Reviews ===== */
+  .reviews-section { background: var(--white); padding: 72px 0; }
+  .reviews-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+  .reviews-head .stars-row { display: flex; align-items: center; gap: 12px; font-family: var(--manrope); font-weight: 800; font-size: 13px; text-transform: uppercase; }
+  .stars { color: var(--orange); letter-spacing: 2px; font-size: 14px; }
+  .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .review { background: var(--white); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .review .photo { position: relative; aspect-ratio: 1 / 1; background: linear-gradient(135deg, #cfcfcf, #6d6d6d); }
+  .review .photo .tag { position: absolute; top: 8px; left: 8px; }
+  .review .meta { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--grey-muted); }
+  .review blockquote { font-size: 13px; color: var(--grey-text); line-height: 1.6; }
+  .review .bought { background: #f5f5f5; padding: 12px; font-size: 11px; font-weight: 600; color: var(--grey-text); }
+
+  /* ===== 7. Dark CTA band ===== */
+  .cta-band { background: var(--black); color: var(--white); padding: 72px 0; position: relative; overflow: hidden; text-align: center; }
+  .cta-band .ghost { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: var(--bebas); font-size: 280px; line-height: 1; color: rgba(255,255,255,.06); white-space: nowrap; pointer-events: none; }
+  .cta-band .inner { position: relative; max-width: 896px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .cta-band h2 { font-family: var(--bebas); font-weight: 400; font-size: 84px; line-height: .95; letter-spacing: 1.7px; text-transform: uppercase; }
+  .cta-band p { max-width: 672px; color: var(--grey-muted); font-size: 16px; line-height: 1.6; }
+  .cta-band .btn { margin-top: 16px; }
+  .cta-band .proof { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-top: 32px; font-size: 11px; font-weight: 600; letter-spacing: .4px; color: var(--grey-muted); text-transform: uppercase; }
+  .cta-band .proof span::before { content: '✓'; color: var(--orange); margin-right: 6px; }
+
+  /* ===== Free audit (₹1) ===== */
+  .audit-section { background: var(--light); padding: 72px 0; }
+  .audit-card { background: var(--white); display: grid; grid-template-columns: 1fr 1fr; max-width: 960px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+  .audit-info { background: var(--black); color: var(--white); padding: 40px; display: flex; flex-direction: column; gap: 16px; justify-content: center; }
+  .audit-info h2 { font-family: var(--bebas); font-weight: 400; font-size: 52px; line-height: 1; letter-spacing: 1px; text-transform: uppercase; }
+  .audit-info h2 span { color: var(--orange); }
+  .audit-info p { color: var(--grey-muted); font-size: 14px; line-height: 1.6; }
+  .audit-info ul { list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+  .audit-info li::before { content: '✓'; color: var(--orange); margin-right: 8px; font-weight: 700; }
+  .audit-form { padding: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .audit-form label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--grey-text); }
+  .audit-form input { padding: 14px; border: 1px solid #d6d6d6; font: inherit; font-size: 14px; text-transform: none; letter-spacing: 0; color: var(--ink); background: var(--white); }
+  .audit-form input:focus { outline: 2px solid var(--orange); outline-offset: 0; border-color: var(--orange); }
+  .audit-form .btn { justify-content: center; width: 100%; }
+  .audit-form .btn:disabled { opacity: .6; cursor: wait; }
+  .audit-form .note { font-size: 11px; color: var(--grey-muted); }
+  .audit-status { display: none; padding: 14px; font-size: 13px; line-height: 1.5; }
+  .audit-status.show { display: block; }
+  .audit-status.ok { background: #eaf7ee; color: #145a2b; }
+  .audit-status.err { background: #fdecec; color: #8a1d1d; }
+  .audit-status .pay-link { display: inline-block; margin-top: 10px; background: var(--black); color: var(--white); padding: 10px 16px; font-family: var(--manrope); font-weight: 800; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+
+  /* ===== 8. FAQ ===== */
+  .faq-section { background: var(--white); padding: 72px 0; }
+  .faq-wrap { max-width: 896px; margin: 0 auto; }
+  .faq-head { display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 32px; }
+  .faq-head .h2 { font-size: 64px; }
+  .faq-item { border-bottom: 1px solid #e6e6e6; }
+  .faq-item summary { list-style: none; cursor: pointer; padding: 18px 24px 18px 0; display: flex; justify-content: space-between; align-items: center; font-family: var(--manrope); font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .3px; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 20px; color: var(--orange); transition: transform .2s; }
+  .faq-item[open] summary::after { content: '–'; }
+  .faq-item p { padding: 0 24px 20px 0; font-size: 14px; color: var(--grey-text); line-height: 1.6; }
+
+  /* ===== Footer ===== */
+  footer.site { background: var(--black); color: var(--white); padding-top: 72px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; }
+  .footer-brand .logo { color: var(--white); }
+  .footer-brand p { margin-top: 20px; font-size: 13px; color: var(--grey-muted); line-height: 1.7; max-width: 430px; }
+  .footer-col h4 { font-family: var(--manrope); font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { font-size: 13px; color: var(--grey-muted); }
+  .footer-col a:hover { color: var(--orange); }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .badges span { background: #1f1f1f; padding: 6px 10px; font-size: 11px; font-weight: 700; color: var(--grey-muted); letter-spacing: .4px; }
+  .footer-bottom { border-top: 1px solid #1f1f1f; padding: 20px 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 11px; color: var(--grey-muted); text-transform: uppercase; letter-spacing: .5px; }
+  .footer-bottom .links { display: flex; gap: 16px; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1100px) {
+    .hero h1 { font-size: 96px; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .step:nth-child(2) { border-right: none; }
+    .step:nth-child(-n+2) { border-bottom: 1px solid #ececec; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .meta-bar .meta-right { display: none; }
+    header.site .wrap { height: auto; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; }
+    nav.main-nav { order: 3; width: 100%; overflow-x: auto; flex-wrap: nowrap; }
+    .search { display: none; }
+    .hero-grid, .why-grid, .audit-card { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 80px; }
+    .hero-visual { height: 460px; }
+    .cat-grid, .product-grid, .review-grid { grid-template-columns: 1fr 1fr; }
+    .why-left .h2, .faq-head .h2 { font-size: 46px; }
+    .cta-band h2 { font-size: 60px; }
+    .cta-band .ghost { font-size: 160px; }
+    .h2 { font-size: 42px; }
+  }
+  @media (max-width: 600px) {
+    .hero { padding-top: 40px; }
+    .hero h1 { font-size: 60px; }
+    .hero .metrics { grid-template-columns: 1fr; }
+    .cat-grid, .product-grid, .review-grid, .feature-grid, .steps { grid-template-columns: 1fr; }
+    .step { border-right: none; border-bottom: 1px solid #ececec; }
+    .step:last-child { border-bottom: none; }
+    .section-head .side-copy { max-width: 100%; }
+    .cta-band h2 { font-size: 46px; }
+    .cta-band .ghost { display: none; }
+    .audit-info, .audit-form { padding: 28px; }
+    .audit-info h2 { font-size: 40px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .logo { font-size: 22px; }
+    .hero .ctas .btn { width: 100%; justify-content: center; }
+    .studio-ribbon .btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Top meta bar ===== -->
+<div class="meta-bar">
+  <div class="wrap">
+    <div class="ticker">
+      <span>Free shipping across India</span>
+      <span>Dispatched in 48 hours</span>
+      <span>Custom printing · Single piece</span>
+    </div>
+    <div class="meta-right">
+      <span>Help</span>
+      <span>Track order</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="site">
+  <div class="wrap">
+    <a href="#top" class="logo">
+      <span class="mark">H</span>
+      <span>HYROOZ<small>CLOTHING</small></span>
+    </a>
+    <nav class="main-nav">
+      <a href="#fit">Shop</a>
+      <a href="#favourites">Fan Favourites</a>
+      <a href="#how">How It Works</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">Help</a>
+      <a href="#studio" class="cta">Studio</a>
+    </nav>
+    <div class="header-icons">
+      <div class="search">⌕ Search</div>
+      <span>♡</span>
+      <span>Bag (0)</span>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== 1. Hero ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="meta-row">
+          <span class="tag">Custom Streetwear</span>
+          <span class="tag tag-light">Single-piece printing</span>
+        </div>
+        <h1>Your style.<br>Your design.<span class="accent">Your rules.</span></h1>
+        <p class="lead">Turn your ideas into wearable art. Customise your favourite clothing, upload your designs, add your personal touch, and make something that's uniquely yours. Crafted on heavyweight luxury silhouettes.</p>
+        <div class="ctas">
+          <a href="#studio" class="btn">Start Customising →</a>
+          <a href="#favourites" class="btn btn-outline">Explore Collection</a>
+        </div>
+        <div class="metrics">
+          <div class="metric"><div class="num">300GSM</div><div class="lbl">Bio-washed cotton</div></div>
+          <div class="metric"><div class="num">48H</div><div class="lbl">Express dispatch</div></div>
+          <div class="metric"><div class="num">4.9★</div><div class="lbl">Over 18K+ prints</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="ph-label">Hero image: download from Figma</div>
+        <div class="gradient"></div>
+        <span class="hero-chip">Live 3D preview</span>
+        <div class="spec-pill">
+          <div>
+            <div class="k">Garment spec</div>
+            <div class="v">Heavyweight oversized tee · 260 GSM</div>
+          </div>
+          <span class="tag">Front · Back</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. Shop by category ===== -->
+  <section class="cat-section" id="fit">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="title-block">
+          <span class="eyebrow">Shop by category</span>
+          <h2 class="h2">Find your fit</h2>
+        </div>
+        <p class="side-copy">Choose the silhouette first. Every base is built for single-piece customisation and prints cleanly on every size.</p>
+      </div>
+      <div class="cat-grid">
+        <article class="cat-card">
+          <div class="img"><span class="tag">Classic</span></div>
+          <div class="body">
+            <div class="idx">01 / Fit</div>
+            <h3>Regular Fit T-Shirts</h3>
+            <p>220 GSM 100% combed cotton, tailored classic crewneck designed for crisp, enduring everyday wear.</p>
+            <div class="link-row"><a href="#favourites">Shop now</a><span>→</span></div>
+          </div>
+        </article>
+        <article class="cat-card">
+          <div class="img"><span class="tag">Heavyweight</span></div>
+          <div class="body">
+            <div class="idx">02 / Fit</div>
+            <h3>Oversized T-Shirts</h3>
+            <p>260 GSM heavyweight drop-shoulder silhouette with structured boxy hang and thick 1.25" neck rib.</p>
+            <div class="link-row"><a href="#favourites">Shop now</a><span>→</span></div>
+          </div>
+        </article>
+        <article class="cat-card">
+          <div class="img"><span class="tag">Fleece</span></div>
+          <div class="body">
+            <div class="idx">03 / Fit</div>
+            <h3>Boxy Pullover Hoodies</h3>
+            <p>380 GSM brushed interior fleece, double-lined seamless hood, kangaroo pouch with hidden zip pocket.</p>
+            <div class="link-row"><a href="#favourites">Shop now</a><span>→</span></div>
+          </div>
+        </article>
+        <article class="cat-card">
+          <div class="img"><span class="tag">Minimal</span></div>
+          <div class="body">
+            <div class="idx">04 / Fit</div>
+            <h3>Minimalist Sweatshirts</h3>
+            <p>320 GSM diagonal loopback French Terry, heavy elastane ribbing at waist and wrist cuffs.</p>
+            <div class="link-row"><a href="#favourites">Shop now</a><span>→</span></div>
+          </div>
+        </article>
+        <article class="cat-card">
+          <div class="img"><span class="tag">Graphic</span></div>
+          <div class="body">
+            <div class="idx">05 / Print</div>
+            <h3>Custom Graphic T-Shirts</h3>
+            <p>Full edge-to-edge printing capabilities with DTF 2400 DPI pigment and zero tactile stiffness.</p>
+            <div class="link-row"><a href="#studio">Customise →</a><span>→</span></div>
+          </div>
+        </article>
+        <article class="cat-card">
+          <div class="img"><span class="tag">Monogram</span></div>
+          <div class="body">
+            <div class="idx">06 / Print</div>
+            <h3>Personalised Monograms</h3>
+            <p>Tactile high-density 3D puff silicone ink and Japanese Tajima precision thread embroidery.</p>
+            <div class="link-row"><a href="#studio">Customise →</a><span>→</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. Fan favourites ===== -->
+  <section class="fav-section" id="favourites">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="title-block">
+          <span class="eyebrow">Best sellers</span>
+          <h2 class="h2">Fan favourites</h2>
+        </div>
+        <div class="filters">
+          <button class="active">All</button>
+          <button>T-Shirts</button>
+          <button>Hoodies</button>
+          <button>Sweatshirts</button>
+        </div>
+      </div>
+      <div class="product-grid">
+        <article class="product">
+          <div class="img"><span class="tag">Best seller</span><span class="wish">♡</span></div>
+          <div class="body">
+            <div class="row"><span>Regular fit</span></div>
+            <h3>Classic Regular Fit T-Shirt</h3>
+            <div class="swatches"><span style="background:#111"></span><span style="background:#ece7db"></span><span style="background:#9b9b9b"></span><span style="background:#fe6a34"></span></div>
+            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span></div>
+          </div>
+          <button class="add">Add to cart</button>
+        </article>
+        <article class="product">
+          <div class="img"><span class="tag">New</span><span class="wish">♡</span></div>
+          <div class="body">
+            <div class="row"><span>Oversized</span></div>
+            <h3>Heavyweight Oversized T-Shirt</h3>
+            <div class="swatches"><span style="background:#111"></span><span style="background:#ece7db"></span><span style="background:#9b9b9b"></span></div>
+            <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span></div>
+          </div>
+          <button class="add">Add to cart</button>
+        </article>
+        <article class="product">
+          <div class="img"><span class="wish">♡</span></div>
+          <div class="body">
+            <div class="row"><span>Hoodie</span></div>
+            <h3>Raw Edge Pullover Hoodie</h3>
+            <div class="swatches"><span style="background:#111"></span><span style="background:#c9b59a"></span></div>
+            <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+          </div>
+          <button class="add">Add to cart</button>
+        </article>
+        <article class="product">
+          <div class="img"><span class="wish">♡</span></div>
+          <div class="body">
+            <div class="row"><span>Boxy</span></div>
+            <h3>Drop-Shoulder Boxy Sweatshirt</h3>
+            <div class="swatches"><span style="background:#ece7db"></span><span style="background:#111"></span></div>
+            <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+          </div>
+          <button class="add">Add to cart</button>
+        </article>
+        <article class="product">
+          <div class="img"><span class="tag">Custom</span><span class="wish">♡</span></div>
+          <div class="body">
+            <div class="row"><span>Graphic</span></div>
+            <h3>Cyber Gothic Custom Graphic Tee</h3>
+            <div class="swatches"><span style="background:#111"></span><span style="background:#fe6a34"></span></div>
+            <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+          </div>
+          <button class="add">Add to cart</button>
+        </article>
+        <article class="product">
+          <div class="img"><span class="wish">♡</span></div>
+          <div class="body">
+            <div class="row"><span>Custom</span></div>
+            <h3>Acid Wash Atelier Custom Tee</h3>
+            <div class="swatches"><span style="background:#7a7a7a"></span><span style="background:#ece7db"></span></div>
+            <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+          </div>
+          <button class="add">Add to cart</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. How it works ===== -->
+  <section class="how-section" id="how">
+    <div class="wrap">
+      <div class="how-head">
+        <span class="eyebrow">Interactive · how it works</span>
+        <h2 class="h2">From your idea to your wardrobe</h2>
+        <p class="lead">Four steps from first sketch to a garment delivered to your door.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="top"><span class="num">01</span><span class="ico">▦</span></div>
+          <span class="k">Step 01</span>
+          <h3>Choose your product</h3>
+          <p>Select your canvas: standard regular fit, heavyweight oversized boxy tees, fleece hoodies, or luxury sweatshirts in multiple curated colorways.</p>
+        </div>
+        <div class="step">
+          <div class="top"><span class="num">02</span><span class="ico">⇪</span></div>
+          <span class="k">Step 02</span>
+          <h3>Add your design</h3>
+          <p>Upload your high-res vectors, PNGs, personal photography, or build custom typographic layouts with our built-in brutalist font studio engine.</p>
+        </div>
+        <div class="step">
+          <div class="top"><span class="num">03</span><span class="ico">◎</span></div>
+          <span class="k">Step 03</span>
+          <h3>Preview your style</h3>
+          <p>Instant photorealistic 3D visualization. Toggle seamlessly between front, back, and sleeve placements with real-time scale measurements.</p>
+        </div>
+        <div class="step">
+          <div class="top"><span class="num">04</span><span class="ico">➜</span></div>
+          <span class="k">Step 04</span>
+          <h3>We print &amp; deliver</h3>
+          <p>Direct-to-Film HD pigment curing with heat calibration. Dispatched within 48 hours in weather-sealed matte black packaging across India.</p>
+        </div>
+      </div>
+      <div class="studio-ribbon" id="studio">
+        <div>
+          <div class="title"><span class="ico">&gt;_</span> Want to test drive the studio editor?</div>
+          <div class="sub">No sign-up required to create mockups and generate instant preview renders.</div>
+        </div>
+        <a href="#audit" class="btn">Open studio canvas →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. Why choose us ===== -->
+  <section class="why-section">
+    <div class="wrap">
+      <div class="why-grid">
+        <div class="why-left">
+          <span class="eyebrow">Engineering excellence</span>
+          <h2 class="h2">Made for you.<br>Printed for you.</h2>
+          <p class="lead">We refused to build another cheap print-on-demand platform. We engineered a luxury streetwear manufacturing line accessible for single-piece customization.</p>
+          <div class="durability">
+            <div class="head"><span>Print durability test</span><b>50+ wash cycles</b></div>
+            <svg viewBox="0 0 320 36" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 30 C 60 28, 100 24, 160 20 S 260 12, 310 4" fill="none" stroke="#fe6a34" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="310" cy="4" r="3.5" fill="#fe6a34"/>
+            </svg>
+            <div class="foot">Zero cracking, zero tactile stiffness, certified Oeko-Tex inks.</div>
+          </div>
+        </div>
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="ico">▨</div>
+            <div class="k">01 // Textile base</div>
+            <h3>Premium heavyweight fabric</h3>
+            <p>100% combed bio-washed cotton, zero synthetic polyester blends in our tees, and heavyweight brushed Terry for unparalleled boxy drape.</p>
+          </div>
+          <div class="feature">
+            <div class="ico">⎙</div>
+            <div class="k">02 // DTF pigmentation</div>
+            <h3>High-definition printing</h3>
+            <p>2400 DPI micro-piezo digital transfer printing with multi-layer white underbase. Razor crisp typography down to 4pt font sizes.</p>
+          </div>
+          <div class="feature">
+            <div class="ico">⛶</div>
+            <div class="k">03 // Freedom deck</div>
+            <h3>100% placement freedom</h3>
+            <p>Chest center, oversized full-back, left pocket crest, sleeve tags, or bottom hem typographic accents. You dictate the exact coordinates.</p>
+          </div>
+          <div class="feature">
+            <div class="ico">⛨</div>
+            <div class="k">04 // Pan-India trust</div>
+            <h3>Secure payments &amp; COD</h3>
+            <p>Instant UPI, NetBanking, Credit Cards, or Cash on Delivery. Free insured delivery across all pin codes in India with live SMS dispatch updates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. Reviews ===== -->
+  <section class="reviews-section" id="reviews">
+    <div class="wrap">
+      <div class="reviews-head">
+        <div>
+          <span class="eyebrow">Customer reviews</span>
+          <h2 class="h2" style="margin-top:12px">Real people. Real style.</h2>
+        </div>
+        <div class="stars-row"><span class="stars">★★★★★</span> 4.9 / 5 rating</div>
+      </div>
+      <div class="review-grid">
+        <div class="review">
+          <div class="photo"><span class="tag">Customer photo</span></div>
+          <div class="meta"><span class="stars">★★★★★</span><span>Verified buyer</span></div>
+          <blockquote>"The 260 GSM fabric weight is insane. Most custom print sites use papery thin blanks that ruin your artwork after one wash. Hyrooz Clothing felt like luxury streetwear straight out of the box."</blockquote>
+          <div class="bought">Bought: Heavyweight Oversized Tee - L in Pitch Black</div>
+        </div>
+        <div class="review">
+          <div class="photo"><span class="tag">Customer photo</span></div>
+          <div class="meta"><span class="stars">★★★★★</span><span>Verified buyer</span></div>
+          <blockquote>"Uploaded an SVG vector created in Illustrator. The print fidelity and color saturation blew my mind. Zero pixel bleeding and the double-lined hood stands up on its own perfectly."</blockquote>
+          <div class="bought">Bought: Raw Edge Pullover Hoodie - M in Sand</div>
+        </div>
+        <div class="review">
+          <div class="photo"><span class="tag">Customer photo</span></div>
+          <div class="meta"><span class="stars">★★★★★</span><span>Verified buyer</span></div>
+          <blockquote>"Printed 1 single piece for my design portfolio launch. Despatched in 48 hours to Delhi. The boxy fit shoulders give that genuine Balenciaga/Yeezy aesthetic without breaking the bank."</blockquote>
+          <div class="bought">Bought: Drop-Shoulder Boxy Sweatshirt - XL in Onyx</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. Dark CTA band ===== -->
+  <section class="cta-band">
+    <div class="ghost" aria-hidden="true">ATELIER STUDIO</div>
+    <div class="wrap">
+      <div class="inner">
+        <span class="tag">Zero limitations // Infinite drip</span>
+        <h2>Why wear something ordinary<br>when you can create<br>something yours?</h2>
+        <p>Your ideas deserve to be worn. Step into the studio, upload your artwork or use our brutalist typography editor, and print your signature identity on heavyweight silhouettes today.</p>
+        <a href="#studio" class="btn">Launch custom studio →</a>
+        <div class="proof">
+          <span>Real-time 3D preview</span>
+          <span>High-res SVG / PNG / TIFF</span>
+          <span>100% quality guarantee</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Free audit ₹1 + lead form ===== -->
+  <section class="audit-section" id="audit">
+    <div class="wrap">
+      <div class="audit-card">
+        <div class="audit-info">
+          <span class="eyebrow" style="color:var(--orange)">Limited offer</span>
+          <h2>Free audit for <span>₹1</span></h2>
+          <p>Get a professional review of your design files before printing: print readiness, colour, resolution, and placement advice.</p>
+          <ul>
+            <li>Print-readiness check for your artwork</li>
+            <li>Placement and sizing recommendations</li>
+            <li>Pay ₹1 to confirm your audit</li>
+          </ul>
+        </div>
+        <div class="audit-form">
+          <form id="leadForm" novalidate>
+            <label>Name
+              <input type="text" id="name" name="name" placeholder="Your full name" autocomplete="name" required>
+            </label>
+            <label>Email
+              <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            </label>
+            <label>Phone
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" required>
+            </label>
+            <button type="submit" class="btn" id="submitBtn">Get free audit for ₹1 →</button>
+            <p class="note">Your details are saved so we can send your audit. Payment is processed securely by Razorpay.</p>
+            <div class="audit-status" id="status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. FAQ ===== -->
+  <section class="faq-section" id="faq">
+    <div class="faq-wrap">
+      <div class="faq-head">
+        <span class="eyebrow">Support</span>
+        <h2 class="h2">Need help? We're here.</h2>
+        <p class="lead">Everything you need to know about our garment cuts, custom printing engine, and shipping times.</p>
+      </div>
+      <details class="faq-item" open>
+        <summary>Which garment cuts do you offer?</summary>
+        <p>Regular fit tees, heavyweight oversized tees, boxy pullover hoodies, minimalist sweatshirts, and drop-shoulder boxy sweatshirts, each in curated colourways.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What file formats can I upload?</summary>
+        <p>High-resolution SVG, PNG, and TIFF files work best. You can also use personal photography or build typographic layouts in our built-in font studio.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long does printing and delivery take?</summary>
+        <p>Orders are dispatched within 48 hours across India in weather-sealed packaging, with SMS updates at each step.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What is the free audit for ₹1?</summary>
+        <p>For ₹1 we review your design files for print readiness, colour, resolution, and placement before you order.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Which payment methods do you accept?</summary>
+        <p>UPI, NetBanking, credit cards, and Cash on Delivery, with secure payment processing.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I track my order?</summary>
+        <p>Use the Order Tracking link in the footer. You will also receive live dispatch updates by SMS.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="mark">H</span><span>HYROOZ<small>CLOTHING</small></span></div>
+        <p>Express yourself through clothing. Choose your style, create your design, and wear something that's uniquely yours. High-density textile engineering meets brutalist bespoke art.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick shop</h4>
+        <ul>
+          <li><a href="#fit">Regular Fit T-Shirts</a></li>
+          <li><a href="#fit">Oversized T-Shirts</a></li>
+          <li><a href="#fit">Heavyweight Hoodies</a></li>
+          <li><a href="#fit">Boxy Sweatshirts</a></li>
+          <li><a href="#studio">Custom Print Atelier</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer support</h4>
+        <ul>
+          <li><a href="#">Order Tracking</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Verified gateway</h4>
+        <p style="font-size:13px;color:var(--grey-muted)">Encrypted instantaneous clearing</p>
+        <div class="badges">
+          <span>UPI</span><span>VISA</span><span>MASTERCARD</span><span>RUPAY</span><span>NETBANKING</span><span>COD</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hyrooz Clothing. All rights reserved.</span>
+      <div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Shipping</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Config =====
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvQdJYxLD1BaBfyjh_g3aLbmsZcNled2bMdOktD3uXQ-DFJrxzGTcZ8igvD78ggRwp0w/exec";
+  const PAYMENT_URL = "https://rzp.io/rzp/OkefAmJN";
+
+  // ===== Elements =====
+  const form = document.getElementById("leadForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const statusBox = document.getElementById("status");
+
+  function showSuccess() {
+    statusBox.className = "audit-status show ok";
+    statusBox.innerHTML = 'Thanks! Your details are saved. Complete the ₹1 payment to confirm your free audit.<br><a class="pay-link" href="' + PAYMENT_URL + '" target="_blank" rel="noopener">Pay ₹1 now →</a>';
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Get free audit for ₹1 →";
+  }
+
+  function showError() {
+    statusBox.className = "audit-status show err";
+    statusBox.textContent = "Something went wrong. Please check your connection and try again.";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Get free audit for ₹1 →";
+  }
+
+  // ===== Submit (GET request, works on file://) =====
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    if (!name || !email || !phone) {
+      statusBox.className = "audit-status show err";
+      statusBox.textContent = "Please fill in name, email and phone.";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+    statusBox.className = "audit-status";
+
+    const url = SCRIPT_URL + "?" + new URLSearchParams({ name, email, phone });
+
+    fetch(url, { method: "GET", mode: "no-cors" })
+      .then(() => showSuccess())
+      .catch(() => showError());
+  });
+</script>
+
+</body>
+</html>
